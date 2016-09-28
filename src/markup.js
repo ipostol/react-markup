@@ -31,20 +31,14 @@ for (let key = 0; key < modulesKeys.length; key += 1) {
 
 }
 
+console.log(componentsDocs, '||||');
+
 /**
  * creating markup routing system from list of components
  */
 const routes = (
   <Router history={browserHistory}>
     <Route path="/" component={Frame} componentsList={componentsList}>
-      {
-        componentsList.map((component, key) => {
-          return (
-            <Route path={`/components/${component}`} component={componentsDocs[component]} key={key} />
-          );
-        })
-      }
-      <IndexRoute component={NotFound} />
       <Route path="*" component={NotFound} />
     </Route>
   </Router>
