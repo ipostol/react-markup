@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import React, { Component, PropTypes } from 'react';
-import { removeIndexFromArray } from '../utils';
+import { removeIndexFromArray } from '../../helpers/utils';
 import TemplateCreatorItem from './TemplateCreatorItem';
 import { RaisedButton } from 'material-ui';
 

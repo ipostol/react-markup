@@ -3,8 +3,8 @@
 import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import ReactDOM from 'react-dom';
-import Frame from './helpers/Frame/Frame';
-import NotFound from './helpers/NotFound/NotFound';
+import Frame from './components/Frame';
+import NotFound from './components/NotFound';
 import { requireAll } from './helpers/utils';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
