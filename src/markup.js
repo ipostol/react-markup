@@ -39,6 +39,15 @@ console.log(componentsDocs, '||||');
 const routes = (
   <Router history={browserHistory}>
     <Route path="/" component={Frame} componentsList={componentsList}>
+      {
+        componentsList.map((component, key) => {
+          console.log(componentsDocs[component], '!!!');
+          return (
+            <Route path={`/components/${component}`} component={componentsDocs[component]} key={key} />
+          );
+        })
+      }
+      <IndexRoute component={NotFound} />
       <Route path="*" component={NotFound} />
     </Route>
   </Router>
