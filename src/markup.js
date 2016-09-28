@@ -13,7 +13,7 @@ injectTapEventPlugin();
 const componentsList = [];
 const componentsDocs = {};
 
-const req = require.context('components', true, /\.docs\.js$/);
+const req = require.context('docsPath', true, /\.docs\.js$/);
 const modules = requireAll(req); // array with all require components
 const modulesKeys = req.keys(); // array with components files paths
 
