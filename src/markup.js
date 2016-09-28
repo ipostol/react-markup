@@ -7,7 +7,7 @@ import Frame from './components/Frame';
 import NotFound from './components/NotFound';
 import { requireAll } from './helpers/utils';
 
-console.log(Frame, NotFound, '????');
+console.log(Frame, '|', NotFound, '????');
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
