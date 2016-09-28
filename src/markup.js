@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import Frame from './helpers/Frame/Frame';
 import NotFound from './helpers/NotFound/NotFound';
 import { requireAll } from './helpers/utils';
+import './normalize.scss';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
