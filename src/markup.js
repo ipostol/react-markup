@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import React, { Component } from 'react';
+import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import ReactDOM from 'react-dom';
 import Frame from './helpers/Frame/Frame';
@@ -22,13 +22,10 @@ console.log(modulesKeys, '|||||||');
 for (let key = 0; key < modulesKeys.length; key += 1) {
 
   const name = modulesKeys[key].slice(2);
-  console.log(name, '??');
-  const component = modules[key].default || modules[key];
+  const component = modules[key].default;
 
-  if (Component.isPrototypeOf(component)) {
-    componentsList.push(name);
-    componentsDocs[name] = component;
-  }
+  componentsList.push(name);
+  componentsDocs[name] = component;
 
 }
 
