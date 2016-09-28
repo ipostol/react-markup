@@ -17,11 +17,9 @@ const req = require.context('components', true, /\.docs\.js$/);
 const modules = requireAll(req); // array with all require components
 const modulesKeys = req.keys(); // array with components files paths
 
-console.log(modulesKeys, '|||||||');
-
 for (let key = 0; key < modulesKeys.length; key += 1) {
 
-  const name = modulesKeys[key].slice(2);
+  const name = modulesKeys[key].slice(2).split('.docs')[0];
   const component = modules[key].default;
 
   componentsList.push(name);
