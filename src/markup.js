@@ -6,9 +6,6 @@ import ReactDOM from 'react-dom';
 import Frame from './helpers/Frame/Frame';
 import NotFound from './helpers/NotFound/NotFound';
 import { requireAll } from './helpers/utils';
-import './normalize.css';
-
-console.log('GOGOGOGOGO');
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
@@ -25,6 +22,7 @@ console.log(modulesKeys, '|||||||');
 for (let key = 0; key < modulesKeys.length; key += 1) {
 
   const name = modulesKeys[key].slice(2);
+  console.log(name, '??');
   const component = modules[key].default || modules[key];
 
   if (Component.isPrototypeOf(component)) {
