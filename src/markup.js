@@ -7,7 +7,6 @@ import Frame from './components/Frame';
 import NotFound from './components/NotFound';
 import { requireAll } from './helpers/utils';
 
-console.log(Frame, '|', NotFound, '????');
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
@@ -31,8 +30,6 @@ for (let key = 0; key < modulesKeys.length; key += 1) {
 
 }
 
-console.log(componentsDocs, '||||');
-
 /**
  * creating markup routing system from list of components
  */
@@ -40,12 +37,9 @@ const routes = (
   <Router history={browserHistory}>
     <Route path="/" component={Frame} componentsList={componentsList}>
       {
-        componentsList.map((component, key) => {
-          console.log(componentsDocs[component], '!!!');
-          return (
-            <Route path={`/components/${component}`} component={componentsDocs[component]} key={key} />
-          );
-        })
+        componentsList.map((component, key) => (
+          <Route path={`/components/${component}`} component={componentsDocs[component]} key={key} />
+        ))
       }
       <IndexRoute component={NotFound} />
       <Route path="*" component={NotFound} />
