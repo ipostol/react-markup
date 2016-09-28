@@ -6,7 +6,9 @@ import ReactDOM from 'react-dom';
 import Frame from './helpers/Frame/Frame';
 import NotFound from './helpers/NotFound/NotFound';
 import { requireAll } from './helpers/utils';
-import './normalize.scss';
+import './normalize.css';
+
+console.log('GOGOGOGOGO');
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
@@ -17,6 +19,8 @@ const componentsDocs = {};
 const req = require.context('components', true, /\.docs\.js$/);
 const modules = requireAll(req); // array with all require components
 const modulesKeys = req.keys(); // array with components files paths
+
+console.log(modulesKeys, '|||||||');
 
 for (let key = 0; key < modulesKeys.length; key += 1) {
 
