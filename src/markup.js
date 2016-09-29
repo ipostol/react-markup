@@ -53,10 +53,3 @@ ReactDOM.render(
   routes,
   document.getElementById('react-root')
 );
-
-if (module.hot) {
-  console.log('gogo');
-  module.hot.accept();
-} else {
-  console.log('not hot :(');
-}
