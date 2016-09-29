@@ -44,9 +44,7 @@ export default class TemplateCreatorItem extends React.Component {
 
         }
 
-      } catch (_) {
-        return;
-      }
+      } catch (_) {}
 
     }
 
