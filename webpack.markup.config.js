@@ -3,8 +3,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const htmlTemplate = require('html-webpack-template');
 
 const nodePath = `${__dirname}/node_modules/`;
+const path = `${__dirname}/../favbet/uikit/`;
+const config = require(`${__dirname}/../favbet/uikit/reactMarkup.json`);
 
+const alias = config.alias || {};
+const eslintConfig = path + (config.eslintConfig || '.eslintrc');
 
+for (const key in alias) {
+  alias[key] = path + alias[key];
+}
+
+alias.root = path + (config.root || 'src/components');
 
 module.exports = {
   entry: [
@@ -46,10 +55,7 @@ module.exports = {
       'node_modules',
       'src'
     ],
-    alias: {
-      docsPath: `${__dirname}/../favbet/uikit/src/components`,
-      theme_colors: `${__dirname}/../favbet/uikit/src/styles/light/index`
-    }
+    alias: alias,
   },
   output: {
     path: `${__dirname}/public`,
@@ -60,7 +66,7 @@ module.exports = {
     autoprefixer({ browsers: ['last 2 version'] })
   ]),
   eslint: {
-    configFile: './.eslintrc'
+    configFile: eslintConfig
   },
   devServer: {
     contentBase: `${__dirname}/public`,

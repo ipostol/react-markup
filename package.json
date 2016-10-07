@@ -6,12 +6,7 @@
   "scripts": {
     "build": "node_modules/babel-cli/bin/babel.js src --out-dir lib",
     "lint": "eslint './src/**/*.js' --config ./.eslintrc",
-    "start": "better-npm-run start"
-  },
-  "betterScripts": {
-    "start": {
-      "command": "webpack-dev-server --colors --hot --inline --config ./webpack.markup.config.js"
-    }
+    "start": "webpack-dev-server --colors --hot --inline --config ./webpack.markup.config.js"
   },
   "repository": {
     "type": "git",
@@ -63,9 +58,5 @@
     "eslint-plugin-import": "^1.15.0",
     "eslint-plugin-jsx-a11y": "^2.2.2",
     "eslint-plugin-react": "^6.3.0"
-  },
-  "devDependencies": {
-    "better-npm-run": "0.0.11",
-    "require-relative": "^0.8.7"
   }
 }
