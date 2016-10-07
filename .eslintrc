@@ -10,6 +10,7 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
     "react/prop-types": [0],
     "import/prefer-default-export": [0],
-    "padded-blocks": [2, "always"]
+    "padded-blocks": [2, "always"],
+    "react/prefer-stateless-function": [0]
   }
 }
