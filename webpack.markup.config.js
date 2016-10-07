@@ -2,7 +2,7 @@ const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const htmlTemplate = require('html-webpack-template');
 
-const nodePath = `${__dirname}/node_modules/`;
+const nodePath = '';
 const path = `${__dirname}/../../`;
 const config = require(`${path}reactMarkup.json`);
 
