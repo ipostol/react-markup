@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const htmlTemplate = require('html-webpack-template');
 
 const nodePath = `${__dirname}/node_modules/`;
-const path = `${__dirname}/../`;
+const path = `${__dirname}/../../`;
 const config = require(`${path}reactMarkup.json`);
 
 const alias = config.alias || {};
