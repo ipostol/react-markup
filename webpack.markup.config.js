@@ -3,8 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const htmlTemplate = require('html-webpack-template');
 
 const nodePath = `${__dirname}/node_modules/`;
-const path = `${__dirname}/../favbet/uikit/`;
-const config = require(`${__dirname}/../favbet/uikit/reactMarkup.json`);
+const path = `${__dirname}/../`;
+const config = require(`${path}/reactMarkup.json`);
 
 const alias = config.alias || {};
 const eslintConfig = path + (config.eslintConfig || '.eslintrc');
