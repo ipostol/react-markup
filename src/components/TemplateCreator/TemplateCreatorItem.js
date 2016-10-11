@@ -117,7 +117,7 @@ export default class TemplateCreatorItem extends React.Component {
   render() {
 
     const Component = this.props.component;
-    const fields = this.state.fields;
+    const fields = { ...this.state.fields };
 
     if (this.state.fields.children) {
       fields.children = this.checkChildrenHTML();
