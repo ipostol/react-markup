@@ -1,7 +1,7 @@
 /* eslint-disable */
 
-import { Link } from 'react-router';
 import React, { Component, PropTypes } from 'react';
+import Section from './Section';
 
 const panelWidth = 400;
 
@@ -42,22 +42,8 @@ const styles = {
   sectionActive: {
     backgroundColor: '#2B2D42',
     color: '#ffffff'
-  },
-  active: {
-    backgroundColor: '#F4F4F8',
-    color: '#261b24'
-  },
-  link: {
-    display: 'block',
-    padding: 19,
-    textDecoration: 'none',
-    textAlign: 'left',
-    color: '#544952',
-    borderBottom: '#e9e9e9 solid 1px'
   }
 };
-
-const sections = ['Components'];
 
 export default class Kit extends Component {
 
@@ -66,17 +52,8 @@ export default class Kit extends Component {
   };
 
   state = {
-    close: !false,
-    section: 'Components'
+    close: true,
   };
-
-  componentWillMount() {
-
-    this.setState({
-      section: this.state.section
-    });
-
-  }
 
   componentDidMount() {
     document.addEventListener('keydown', (e) => {
@@ -88,37 +65,39 @@ export default class Kit extends Component {
     });
   }
 
-  changeSection = (section) => {
+  render() {
 
-    this.setState({
-      section
+    const map = {};
+
+    this.props.componentsList.forEach((componentPath) => {
+
+      const section = componentPath.split('/')[0];
+
+      if (!map[section]) {
+        map[section] = [];
+      }
+
+      map[section].push(componentPath.split('/').slice(1).join('/'));
+
     });
 
-  };
-
-  render() {
     return (
       <div style={{ ...styles.kit, width: !this.state.close ? panelWidth : 0 }}>
         <div style={styles.sections}>
-          {
-            sections.map((section, key) => {
-              return (
-                <div key={key} style={{ ...styles.section, ...styles[(this.state.section === section) ? 'sectionActive' : ''] }} onClick={this.changeSection.bind(null, section)}>{section}</div>
-              );
-            })
-          }
+          <div style={{ ...styles.section, ...styles.sectionActive }}>Components</div>
         </div>
         <div style={styles.content}>
           {
-            this.props[`${this.state.section.toLowerCase()}List`].map((item, key) => {
+            Object.keys(map).map((section, key) => {
               return (
-                <Link key={key} style={{ ...styles.link, ...styles[(this.props.path === `/${this.state.section.toLowerCase()}/${item}` ? 'active' : '')] }} to={`/${this.state.section.toLowerCase()}/${item}`}>{item}</Link>
+                <Section key={key} section={section} items={map[section]} path={this.props.path} />
               );
             })
           }
         </div>
       </div>
     );
+
   }
 
 }
