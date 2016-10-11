@@ -7,6 +7,7 @@ const config = require(`${path}reactMarkup.json`);
 
 const alias = config.alias || {};
 const eslintConfig = path + (config.eslintConfig || '.eslintrc');
+const modulesDirectories = config.modulesDirectories || [];
 
 for (const key in alias) {
   alias[key] = path + alias[key];
@@ -50,10 +51,8 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.scss', '.json'],
     modulesDirectories: [
-      `${__dirname}/node_modules`,
       'node_modules',
-      'src'
-    ],
+    ].concat(modulesDirectories),
     alias: alias,
   },
   output: {
