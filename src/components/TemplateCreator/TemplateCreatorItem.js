@@ -117,6 +117,11 @@ export default class TemplateCreatorItem extends React.Component {
   render() {
 
     const Component = this.props.component;
+    const fields = this.state.fields;
+
+    if (this.state.fields.children) {
+      fields.children = this.checkChildrenHTML();
+    }
 
     return (
       <Skin style={{width: 500, ...this.props.style}}>
@@ -124,7 +129,7 @@ export default class TemplateCreatorItem extends React.Component {
           this.checkFields()
         }
         <br />
-        <Component {...this.state.fields} children={this.checkChildrenHTML()} />
+        <Component {...fields} />
         <br />
         <hr />
         <RaisedButton label="Delete" secondary onClick={this.props.remove} />
