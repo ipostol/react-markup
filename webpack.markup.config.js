@@ -1,19 +1,20 @@
 const autoprefixer = require('autoprefixer');
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const htmlTemplate = require('html-webpack-template');
 
-const path = `${__dirname}/../../`;
-const config = require(`${path}reactMarkup.json`);
+const relativePath = `${__dirname}/../../`;
+const config = require(`${relativePath}reactMarkup.json`);
 
 const alias = config.alias || {};
-const eslintConfig = path + (config.eslintConfig || '.eslintrc');
+const eslintConfig = relativePath + (config.eslintConfig || '.eslintrc');
 const modulesDirectories = config.modulesDirectories || [];
 
 for (const key in alias) {
-  alias[key] = path + alias[key];
+  alias[key] = relativePath + alias[key];
 }
 
-alias.root = path + (config.root || 'src/components');
+alias.root = relativePath + (config.root || 'src/components');
 
 module.exports = {
   entry: [
@@ -31,7 +32,7 @@ module.exports = {
       {
         test: /\.js?$/,
         exclude: /node_modules/,
-        loader: 'react-hot-loader!babel-loader'
+        loader: `${__dirname}/node_modules/react-hot-loader!babel-loader?babelrc=false&extends=${require('path').join(__dirname, '/.babelrc')}`
       },
       {
         test: /\.scss?$/,
