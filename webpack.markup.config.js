@@ -46,7 +46,8 @@ module.exports = {
       { test: /\.woff$/, loader: 'url-loader?limit=100000&mimetype=application/font-woff' },
       { test: /\.png$/, loader: 'url-loader?limit=100000000&mimetype=image/png' },
       { test: /\.jpg$/, loader: 'url-loader?limit=100000000&mimetype=image/jpg' },
-      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=image/svg+xml' }
+      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=image/svg+xml' },
+      { test: /\.html$/, loader: 'html' },
     ]
   },
   resolve: {
