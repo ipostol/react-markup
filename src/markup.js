@@ -7,7 +7,7 @@ import Frame from './components/Frame';
 import NotFound from './components/NotFound';
 import { requireAll } from './helpers/utils';
 
-try { // require normalize file if he present
+try { // require normalize file if he present, DO IT BY GLOBAL VARIABLE FROM WEBPACK CONFIG|ALIAS have or no normalize
   require('normalize');
 } catch (e) {}
 

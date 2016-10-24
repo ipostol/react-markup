@@ -39,7 +39,17 @@ export default class Section extends Component {
                 to={`/components/${this.props.section}/${item}`}
               >
                 {
-                  item.split('/')[0] === item.split('/')[1] ? item.split('/')[0] : item
+                  (() => {
+
+                    const paths = item.split('/');
+
+                    if (paths[paths.length - 1] === paths[paths.length - 2]) {
+                      return paths.slice(0, -1).join('/');
+                    }
+
+                    return item;
+
+                  })()
                 }
               </Link>
             );
