@@ -1,3 +1,16 @@
 # This is a react-markup repo
 
-## use npm run polyfill for start markup with webpack2@beta, or react-hot-loader@3
+# create reactMarkup.json with dependecy
+```js
+{
+  "alias": {
+    "normalize": "src/styles/normalize"
+  },
+  "root": "src/components",
+  "eslintConfig": ".eslintrc.json",
+  "modulesDirectories": ["src"]
+}
+```
+
+## use npm run setup for build self-env
+## npm start
