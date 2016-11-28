@@ -11,9 +11,6 @@ try { // require normalize file if he present, DO IT BY GLOBAL VARIABLE FROM WEB
   require('normalize');
 } catch (e) {}
 
-import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
-
 const componentsList = [];
 const componentsDocs = {};
 
