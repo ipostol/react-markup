@@ -15,6 +15,7 @@ for (const key in alias) {
 }
 
 alias.root = relativePath + (config.root || 'src/components');
+alias['react/lib/ReactMount'] = 'react-dom/lib/ReactMount';
 
 module.exports = {
   entry: [
