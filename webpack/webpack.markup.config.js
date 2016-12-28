@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const htmlTemplate = require('html-webpack-template');
 
-const relativePath = `${__dirname}/../../favbet/uikit/`;
+const relativePath = '/Users/kolombor/projects/favbet/uikit/';
 const config = require(`${relativePath}reactMarkup.json`);
 
 const alias = config.alias || {};

@@ -1,4 +1,7 @@
 #! /usr/bin/env node
-var shell = require("shelljs");
+const shell = require("shelljs");
 
-shell.exec("echo shell.exec works");
+const path = process.env.PWD;
+
+shell.cd(`${__dirname}/../`);
+shell.exec(`npm start -- path=${path}`);
