@@ -1,5 +1,5 @@
 {
-  "name": "@ipostol/react-markup",
+  "name": "react-markup",
   "version": "1.0.0",
   "description": "This is a react-markup",
   "main": "lib/index.js",
