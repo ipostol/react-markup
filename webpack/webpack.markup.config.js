@@ -1,13 +1,9 @@
-const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const htmlTemplate = require('html-webpack-template');
 
-const p = process.env.argv[process.env.argv.length - 1].split('=')[1].slice(5);
-console.log(p);
-
-const relativePath = '/Users/kolombor/projects/favbet/uikit/';
+const relativePath = process.env.MARKUP_PATH + '/';
 const config = require(`${relativePath}reactMarkup.json`);
 
 const alias = config.alias || {};
@@ -59,7 +55,7 @@ module.exports = {
   output: {
     path: `${__dirname}/public`,
     publicPath: '/',
-    filename: 'bundle.js',
+    filename: '[name].js',
   },
   devServer: {
     contentBase: `${__dirname}/public`,
