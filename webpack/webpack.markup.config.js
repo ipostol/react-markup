@@ -4,6 +4,9 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const htmlTemplate = require('html-webpack-template');
 
+const p = process.env.argv[process.env.argv.length - 1].split('=')[1].slice(5);
+console.log(p);
+
 const relativePath = '/Users/kolombor/projects/favbet/uikit/';
 const config = require(`${relativePath}reactMarkup.json`);
 
@@ -27,8 +30,8 @@ module.exports = {
     loaders: [
       {
         test: /\.js?$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader'
+        exclude: /node_modules\/(?!(react-markup|ANOTHER-ONE)\/).*/,
+        loader: 'babel-loader',
       },
       {
         test: /\.scss?$/,

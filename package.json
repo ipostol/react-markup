@@ -10,7 +10,7 @@
     "setup": "npm install; npm run build; npm uninstall react"
   },
   "bin": {
-    "react-markup": "bin/some.js"
+    "react-markup": "bin/start.js"
   },
   "repository": {
     "type": "git",
