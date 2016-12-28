@@ -1,13 +1,13 @@
 const autoprefixer = require('autoprefixer');
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const htmlTemplate = require('html-webpack-template');
 
-const relativePath = `${__dirname}/../../`;
+const relativePath = `${__dirname}/../../favbet/uikit/`;
 const config = require(`${relativePath}reactMarkup.json`);
 
 const alias = config.alias || {};
-const eslintConfig = relativePath + (config.eslintConfig || '.eslintrc');
 const modulesDirectories = config.modulesDirectories || [];
 
 for (const key in alias) {
@@ -15,29 +15,24 @@ for (const key in alias) {
 }
 
 alias.root = relativePath + (config.root || 'src/components');
-alias['react/lib/ReactMount'] = 'react-dom/lib/ReactMount';
 
 module.exports = {
   entry: [
-    './lib/markup.js'
+    'react-hot-loader/patch',
+    'webpack-dev-server/client',
+    'webpack/hot/only-dev-server',
+    path.resolve(__dirname, 'hotReload'),
   ],
   module: {
-    preLoaders: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader'
-      },
-    ],
     loaders: [
       {
         test: /\.js?$/,
         exclude: /node_modules/,
-        loader: `${__dirname}/node_modules/react-hot-loader!babel-loader?babelrc=false&extends=${require('path').join(__dirname, '/.babelrc')}`
+        loader: `${__dirname}/../node_modules/babel-loader`
       },
       {
         test: /\.scss?$/,
-        loader: 'style-loader!css-loader?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!postcss-loader!sass-loader?outputStyle=expanded&sourceMap'
+        loader: 'style-loader!css-loader?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!sass-loader?outputStyle=expanded&sourceMap'
       },
       { test: /\.css$/, loader: 'style-loader!css-loader' },
       { test: /\.json$/, loader: 'json-loader' },
@@ -52,8 +47,8 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.scss', '.json'],
-    modulesDirectories: [
+    modules: [
+      path.join(relativePath, 'node_modules'),
       'node_modules',
     ].concat(modulesDirectories),
     alias: alias,
@@ -63,20 +58,17 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js',
   },
-  postcss: () => ([
-    autoprefixer({ browsers: ['last 2 version'] })
-  ]),
-  eslint: {
-    configFile: eslintConfig
-  },
   devServer: {
     contentBase: `${__dirname}/public`,
     port: 3333,
     host: '0.0.0.0',
+    hot: true,
     historyApiFallback: true,
   },
   devtool: '#inline-source-map',
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({
       title: 'React Markup',
       inject: false,
@@ -84,6 +76,7 @@ module.exports = {
       filename: 'index.html',
       appMountId: 'react-root',
       mobile: true
-    })
-  ]
+    }),
+  ],
+  performance: { hints: false },
 };
