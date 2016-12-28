@@ -1,5 +1,5 @@
 {
-  "name": "react-markup",
+  "name": "@linclark/react-markup",
   "version": "1.0.0",
   "description": "This is a react-markup",
   "main": "lib/index.js",
@@ -8,6 +8,9 @@
     "lint": "eslint './src/**/*.js' --config ./.eslintrc",
     "start": "webpack-dev-server --colors --open --config ./webpack/webpack.markup.config.js",
     "setup": "npm install; npm run build; npm uninstall react"
+  },
+  "bin": {
+    "logs": "bin/some.js"
   },
   "repository": {
     "type": "git",
@@ -19,16 +22,8 @@
     "markup",
     "prototype"
   ],
-  "babel": {
-    "presets": [
-      "react",
-      "es2015",
-      "stage-0"
-    ]
-  },
   "author": "Postol Ivan",
   "dependencies": {
-    "autoprefixer": "^6.5.0",
     "babel-cli": "^6.9.0",
     "babel-eslint": "^6.1.2",
     "babel-loader": "^6.2.5",
@@ -52,13 +47,14 @@
     "material-ui": "^0.15.4",
     "node-sass": "^3.10.0",
     "path": "^0.12.7",
-    "postcss-loader": "^0.13.0",
     "react-hot-loader": "^3.0.0-beta.6",
     "react-router": "^2.8.1",
     "sass-loader": "^4.0.2",
+    "shelljs": "^0.7.5",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "2.1.0-beta.28",
     "webpack-dev-server": "2.2.0-rc.0"
-  }
+  },
+  "license": "ISC"
 }
