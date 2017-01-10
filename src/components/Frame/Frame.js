@@ -1,8 +1,11 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import Kit from './Kit';
 
-const styles = {
+injectTapEventPlugin();
+
+export const styles = {
   top: 0,
   left: 0,
   right: 0,
