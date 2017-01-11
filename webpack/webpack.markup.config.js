@@ -15,13 +15,15 @@ for (const key in alias) {
 
 alias.root = relativePath + (config.root || 'src/components');
 
+
+
 module.exports = {
   entry: [
     'react-hot-loader/patch',
     'webpack-dev-server/client',
     'webpack/hot/only-dev-server',
     path.resolve(__dirname, 'hotReload'),
-  ],
+  ].concat(config.requires ? config.requires.map(r => `${relativePath}${r}`) : []),
   module: {
     loaders: [
       {
