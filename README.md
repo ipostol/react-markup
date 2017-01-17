@@ -12,5 +12,4 @@
 }
 ```
 
-## use npm run setup for build self-env
-## npm start
+npm i git+https://git@github.com/ipostol/react-markup.git#devel-try-cli -g
