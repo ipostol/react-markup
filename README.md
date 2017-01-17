@@ -13,5 +13,5 @@
 ```
 
 ```js
-npm i git+https://git@github.com/ipostol/react-markup.git#devel-try-cli -g
+npm i git+https://git@github.com/ipostol/react-markup.git -g
 ```
