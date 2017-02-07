@@ -78,11 +78,14 @@ module.exports = {
       appMountId: 'react-root',
       mobile: true
     }),
+     new webpack.LoaderOptionsPlugin({
+       test: /\.scss$/,
+       options: {
+         postcss: () => [
+          require('autoprefixer'),
+        ];
+       }
+     })
   ],
-  postcss: () => {
-    return [
-      require('autoprefixer'),
-    ];
-  },
   performance: { hints: false },
 };
