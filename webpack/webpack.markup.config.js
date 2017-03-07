@@ -22,8 +22,9 @@ module.exports = {
     'react-hot-loader/patch',
     'webpack-dev-server/client',
     'webpack/hot/only-dev-server',
-    path.resolve(__dirname, 'hotReload'),
-  ].concat(config.requires ? config.requires.map(r => `${relativePath}${r}`) : []),
+  ]
+  .concat(config.requires ? config.requires.map(r => r[0] === '.' ? `${relativePath}${r}` : r) : [])
+  .concat([path.resolve(__dirname, 'hotReload')]),
   module: {
     loaders: [
       {
