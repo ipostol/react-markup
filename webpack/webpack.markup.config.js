@@ -77,7 +77,9 @@ module.exports = {
       template: htmlTemplate,
       filename: 'index.html',
       appMountId: 'react-root',
-      mobile: true
+      mobile: true,
+      meta: config.meta || [],
+      links: config.links || [],
     })
   ],
   performance: { hints: false },
