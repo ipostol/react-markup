@@ -17,7 +17,7 @@ const modulesKeys = req.keys(); // array with components files paths
 for (let key = 0; key < modulesKeys.length; key += 1) {
 
   const name = modulesKeys[key].slice(2).split('.docs')[0];
-  const component = modules[key].default;
+  const component = modules[key].default || modules[key];
 
   componentsList.push(name);
   componentsDocs[name] = component;
