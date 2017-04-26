@@ -62,7 +62,7 @@ module.exports = {
   },
   devServer: {
     contentBase: `${__dirname}/public`,
-    port: process.env.PORT || 3333,
+    port: parseInt(process.env.PORT) || 3333,
     host: '0.0.0.0',
     hot: true,
     historyApiFallback: true,
