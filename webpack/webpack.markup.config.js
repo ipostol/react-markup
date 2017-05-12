@@ -15,7 +15,31 @@ for (const key in alias) {
 
 alias.root = relativePath + (config.root || 'src/components');
 
+const fonts = [
+  [/\.woff(\?v=\d+\.\d+\.\d+)?$/],
+  [/\.woff2(\?v=\d+\.\d+\.\d+)?$/],
+  [/\.(ttf|eot|svg|png|jpg)(\?v=[0-9]\.[0-9]\.[0-9])?$/],
+].map((font) => {
 
+  const rule = {
+    test: font[0],
+    use: [
+      'file-loader',
+    ],
+  };
+
+  return rule;
+
+});
+
+const postcssLoader = {
+  loader: 'postcss-loader',
+  options: {
+    plugins: () => [
+      require('autoprefixer')({ browsers: ['last 2 version'] }),
+    ],
+  },
+};
 
 module.exports = {
   entry: [
@@ -26,27 +50,52 @@ module.exports = {
   .concat(config.requires ? config.requires.map(r => r[0] === '.' ? `${relativePath}${r}` : r) : [])
   .concat([path.resolve(__dirname, 'hotReload')]),
   module: {
-    loaders: [
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          postcssLoader
+        ]
+      },
       {
         test: /\.js?$/,
         exclude: /node_modules\/(?!(react-markup|ANOTHER-ONE)\/).*/,
-        loader: 'babel-loader',
+        use: [
+          'babel-loader'
+        ],
       },
       {
         test: /\.scss?$/,
-        loader: 'style-loader!css-loader?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!sass-loader?outputStyle=expanded&sourceMap'
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              sourceMap: true,
+              importLoaders: 2,
+              localIdentName: '[local]___[hash:base64:5]',
+            },
+          },
+          postcssLoader,
+          {
+            loader: 'sass-loader',
+            options: {
+              outputStyle: 'expanded',
+              sourceMap: true,
+            },
+          },
+        ],
       },
-      { test: /\.css$/, loader: 'style-loader!css-loader' },
-      { test: /\.json$/, loader: 'json-loader' },
-      { test: /\.ttf$/, loader: 'url-loader?limit=100000&mimetype=application/font-ttf' },
-      { test: /\.eot$/, loader: 'url-loader?limit=100000&mimetype=application/vnd.ms-fontobject' },
-      { test: /\.woff2$/, loader: 'url-loader?limit=100000&mimetype=application/font-woff2' },
-      { test: /\.woff$/, loader: 'url-loader?limit=100000&mimetype=application/font-woff' },
-      { test: /\.png$/, loader: 'url-loader?limit=100000000&mimetype=image/png' },
-      { test: /\.jpg$/, loader: 'url-loader?limit=100000000&mimetype=image/jpg' },
-      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=image/svg+xml' },
-      { test: /\.html$/, loader: 'html' },
-    ]
+      {
+        test: /\.json$/,
+        use: [
+          { loader: 'json-loader' },
+        ],
+      }
+    ].concat(fonts),
   },
   resolve: {
     modules: [
