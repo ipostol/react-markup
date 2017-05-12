@@ -24,7 +24,7 @@ const fonts = [
   const rule = {
     test: font[0],
     use: [
-      'file-loader',
+      'url-loader?limit=100000',
     ],
   };
 
