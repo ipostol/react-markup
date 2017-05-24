@@ -129,6 +129,7 @@ module.exports = {
       mobile: true,
       meta: config.meta || [],
       links: config.links || [],
+      scripts: config.scripts || [],
     })
   ],
   performance: { hints: false },
