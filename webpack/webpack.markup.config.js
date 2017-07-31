@@ -9,6 +9,21 @@ const config = require(`${relativePath}reactMarkup.json`);
 const alias = config.alias || {};
 const modulesDirectories = config.modulesDirectories || [];
 
+// ENV
+
+const env = config.env || {};
+const define = {};
+
+Object.keys(env).forEach((key) => {
+
+  const el = env[key];
+
+  define[`process.env.${key}`] = typeof el === 'string' ? JSON.stringify(el) : el;
+
+});
+
+// ---
+
 for (const key in alias) {
   alias[key] = relativePath + alias[key];
 }
@@ -118,6 +133,7 @@ module.exports = {
   },
   devtool: '#inline-source-map',
   plugins: [
+    new webpack.DefinePlugin(define),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({
@@ -130,7 +146,7 @@ module.exports = {
       meta: config.meta || [],
       links: config.links || [],
       scripts: config.scripts || [],
-    })
+    }),
   ],
   performance: { hints: false },
 };
